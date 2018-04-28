@@ -11,3 +11,9 @@ export const playlist = [
   { ...media, id: 0 },
   { ...media, id: 1 },
 ];
+
+export const category = {
+  description: 'Lo mejor de la semana',
+  title: 'Destacados',
+  playlist,
+};
