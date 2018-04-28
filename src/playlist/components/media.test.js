@@ -43,13 +43,13 @@ describe('Media', () => {
   });
 
   describe('Behavior on click .Media', () => {
-    const newProps = {
-      openModal() {
-        return true;
-      }
+    const openModal = () => true;
+    const spy = jest.fn(openModal);
+    const propsModalFn = {
+      ...props,
+      openModal: spy,
     };
-    const spy = jest.spyOn(newProps, 'openModal');
-    const wrapperClick = shallow(<Media openModal={() => spy} {...props} />);
+    const wrapperClick = shallow(<Media {...propsModalFn} />);
     it('should call once openModal', () => {
       wrapperClick.find('.Media').simulate('click');
       expect(spy).toHaveBeenCalled();

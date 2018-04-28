@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './media.css';
 
 const Media = (props) => (
-  <div className="Media" onClick={props.openModal(props)}>
+  <div className="Media" onClick={() => props.openModal(props)}>
     <div className="Media-cover">
       <img
         src={props.cover}
