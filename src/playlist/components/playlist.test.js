@@ -13,7 +13,7 @@ describe('Playlist', () => {
     expect(playlist.find('div.Playlist').exists()).toBe(true);
   });
 
-  it('renders two Media componenet', () => {
+  it('renders two Media components', () => {
     expect(playlist.find('Media')).toHaveLength(2);
   });
 });

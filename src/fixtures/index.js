@@ -17,3 +17,8 @@ export const category = {
   title: 'Destacados',
   playlist,
 };
+
+export const categories = [
+  { ...category, id: 0 },
+  { ...category, id: 1 }
+];
