@@ -4,14 +4,16 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 // importamos el componente que queremos testear
 import Media from './media';
+// importamos fixtures
+import { media } from '../../fixtures';
 
 // props se testing
 const props = {
-  title: 'title test',
-  author: 'author test',
+  ...media,
 };
 
 const newProps = {
+  ...media,
   title: 'new title test',
 };
 
