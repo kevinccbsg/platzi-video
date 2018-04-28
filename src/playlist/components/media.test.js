@@ -1,13 +1,14 @@
 // importamos react para poder usar componentes
 import React from 'react';
 // importamos el metodo shallow para renderizar el componente
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 // importamos el componente que queremos testear
 import Media from './media';
 
 // props se testing
 const props = {
   title: 'title test',
+  author: 'author test',
 };
 
 const newProps = {
@@ -22,10 +23,15 @@ describe('Media', () => {
     expect(wrapper.find('img')).toHaveLength(1);
   });
 
-  it('should have title with value `title test`', () => {
+  it(`should have title with value ${props.title}`, () => {
     const wrapper = shallow(<Media {...props} />);
     // esperamos que ese wrapper que es nuestro componente tenga un h3 con el titulo
     expect(wrapper.find('h3.Media-title').text()).toEqual(props.title);
+  });
+
+  it(`should have author with value ${props.author}`, () => {
+    const wrapper = shallow(<Media {...props} />);
+    expect(wrapper.find('p.Media-author').text()).toEqual(props.author);
   });
 
   it('should have title with new value `new title test`', () => {
@@ -34,5 +40,22 @@ describe('Media', () => {
     wrapper.setProps(newProps);
     // esperamos que ese wrapper que es nuestro componente tenga un h3 con el titulo nuevo
     expect(wrapper.find('h3.Media-title').text()).toEqual(newProps.title);
+  });
+
+  describe('Behavior on click .Media', () => {
+    const openModal = () => true;
+    const spy = jest.fn(openModal);
+    const propsModalFn = {
+      ...props,
+      openModal: spy,
+    };
+    const wrapperClick = shallow(<Media {...propsModalFn} />);
+    it('should call once openModal', () => {
+      wrapperClick.find('.Media').simulate('click');
+      expect(spy).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledTimes(1);
+      spy.mockReset();
+      spy.mockRestore();
+    });
   });
 });

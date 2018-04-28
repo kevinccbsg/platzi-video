@@ -2,17 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './media.css';
 
-const styles = {
-  container: {
-    color: '#44546b',
-    cursor: 'pointer',
-    width: 260,
-    border: '1px solid red'
-  }
-};
-
 const Media = (props) => (
-  <div className="Media" onClick={props.openModal(props)}>
+  <div className="Media" onClick={() => props.openModal(props)}>
     <div className="Media-cover">
       <img
         src={props.cover}
